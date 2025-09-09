@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List App</title>
+  <style>
+    
+    #popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      padding: 24px 32px;
+      border: 1.5px solid #ccc;
+      z-index: 1000;
+      max-width: 700px;
+      min-width: 350px;
+      box-shadow: 0 2px 16px #0003;
+      width: min(700px, 90vw);
+      overflow: visible;      
+    }
+
+    #popup-desc {
+      min-height: 0;
+      max-height: 80vh;       
+      overflow-y: auto;
+      white-space: pre-wrap;  
+      word-break: break-word;
+      line-height: 1.55;
+      margin: 12px 0;
+      padding-right: 4px;     
+    }
+
+    #popup-edit textarea#edit-desc {
+      max-height: 80vh;
+      overflow-y: auto;
+      line-height: 1.4;
+      resize: vertical;
+    }
+  </style>
+</head>
+<body>
+  <h1>To Do List</h1>
+  <form id="todo-form" style="display:flex;gap:8px;align-items:flex-start;">
+    <input type="text" id="todo-input" placeholder="Tiêu đề công việc..." required style="flex:1;min-width:150px;" />
+    <textarea id="desc-input" placeholder="Mô tả chi tiết..." required rows="2" style="flex:2;min-width:200px;"></textarea>
+    <button type="submit">Thêm</button>
+  </form>
+  <ul id="todo-list"></ul>
+
+  <!-- Popup hiển thị mô tả -->
+  <div id="popup">
+    <div id="popup-view">
+      <h2 id="popup-title"></h2>
+      <p id="popup-desc"></p>
+      <button id="edit-btn">Sửa</button>
+      <button onclick="document.getElementById('popup').style.display='none'">Đóng</button>
+    </div>
+    <form id="popup-edit" style="display:none;flex-direction:column;gap:12px;">
+      <input type="text" id="edit-title" required style="font-size:1.2em;padding:6px;" />
+      <textarea id="edit-desc" required rows="8" style="font-size:1.1em;padding:8px;min-width:320px;"></textarea>
+      <div style="margin-top:12px;">
+        <button type="submit">Lưu</button>
+        <button type="button" id="cancel-edit">Huỷ</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="../dist/bundle.js"></script>
+</body>
+</html>
